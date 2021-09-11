@@ -68,9 +68,5 @@ func Solve (cypherText string) {
 			finalPlugBoard = currPlugBoard
 		}
 	}
-
-	e := NewEnigma(finalConfig, reflector, *finalPlugBoard)
-	decoded := e.EncodeString(cypherText)
-	fmt.Print(PrintConfig(finalConfig, *finalPlugBoard))
-	fmt.Println(decoded)
+	fmt.Println(PrintConfig(finalConfig, *finalPlugBoard))
 }

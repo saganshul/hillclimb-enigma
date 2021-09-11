@@ -1,5 +1,4 @@
 .idea/
-go.mod
 hillclimb
 TESTS/
 paragraphs.txt

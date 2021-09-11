@@ -37,7 +37,6 @@ func PrintConfig(config []RotorConfig, plugBoard Plugboard) string {
 			ans += " "
 		}
 	}
-	ans += "\n"
 	return ans
 }
 
