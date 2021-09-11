@@ -23,13 +23,11 @@ func PrintConfig(config []RotorConfig, plugBoard Plugboard) string {
 		ans += rotor.ID
 		ans += " "
 	}
-	ans = ans[:len(ans) - 1]
 	ans += "\n"
 	for _, rotor := range config {
 		ans += string(rotor.Start)
 		ans += " "
 	}
-	ans = ans[:len(ans) - 1]
 	ans += "\n"
 
 	for i := 0 ; i<26 ; i++ {
