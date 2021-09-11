@@ -1,15 +1,26 @@
 package main
 
-import (
-	"strings"
-)
-
 func CalculateIC(txt string) float64 {
 	var icScore int = 0
 	txtLen := len(txt)
-	for i := 'A'; i <= 'Z'; i++ {
-		freq := strings.Count(txt, string(i))
-		icScore += freq*(freq-1)
+	var freq = make([]int, 26)
+	for i:= 0; i < 26; i++ {
+		freq[i] = 0
+	}
+	for i := 0; i < txtLen ; i++ {
+		freq[CharToIndex(txt[i])]++
+	}
+	for i := 0; i < 26; i++ {
+		icScore += freq[i]*(freq[i]-1)
 	}
 	return float64(icScore)/float64(txtLen*(txtLen-1))
+}
+
+func CompareICScore(curr float64, new float64) bool {
+	if new > 0.07 {
+		return false
+	} else if curr < new {
+		return true
+	}
+	return false
 }

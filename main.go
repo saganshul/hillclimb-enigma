@@ -1,3 +1,5 @@
+// This project repurpose the code of Go Enigma: https://github.com/emedvedev/enigma
+
 package main
 
 import (
@@ -13,6 +15,30 @@ func SanitizePlaintext(plaintext string) string {
 	plaintext = strings.Replace(plaintext, " ", "", -1)
 	plaintext = regexp.MustCompile(`[^A-Z]`).ReplaceAllString(plaintext, "X")
 	return plaintext
+}
+
+func PrintConfig(config []RotorConfig, plugBoard Plugboard) string {
+	ans := ""
+	for _, rotor := range config {
+		ans += rotor.ID
+		ans += " "
+	}
+	ans += "\n"
+	for _, rotor := range config {
+		ans += string(rotor.Start)
+		ans += " "
+	}
+	ans += "\n"
+
+	for i := 0 ; i<26 ; i++ {
+		if plugBoard[i] != i && plugBoard[i] > i {
+			ans += string(rune('A' + i))
+			ans += string(rune('A' + plugBoard[i]))
+			ans += " "
+		}
+	}
+	ans += "\n"
+	return ans
 }
 
 func main() {
@@ -33,7 +59,9 @@ func main() {
 
 	cypherText := readBuff.String()
 	cypherText = SanitizePlaintext(cypherText)
-	HillClimb(cypherText)
-	//fmt.Println(cypherText)
-	//fmt.Println(CalculateIC(cypherText))
+	Solve(cypherText)
 }
+
+/*func main() {
+	Generate()
+}*/
